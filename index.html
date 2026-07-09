@@ -21,12 +21,12 @@
   }
 
   .map {
-    max-width: 1150px;
+    max-width: 1400px;
     margin: 0 auto;
     padding-top: 10px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto auto;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto auto auto;
     gap: 35px;
     position: relative;
   }
@@ -59,13 +59,13 @@
 
   /* Consumer node */
   .consumer {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
+    grid-column: 2 / 4;
+    grid-row: 2 / 4;
     background: linear-gradient(135deg, #222, #444);
     color: #fff;
     border-radius: 20px;
-    width: 220px;
-    height: 220px;
+    width: 260px;
+    height: 260px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -85,7 +85,7 @@
   }
 
   .consumer span {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
     letter-spacing: 0.6px;
   }
@@ -141,52 +141,18 @@
   }
 
   /* Vertical lines */
-  .line-top {
-    width: 2px;
-    height: 150px;
-    left: 50%;
-    top: 150px;
-  }
+  .line-top { width: 2px; height: 200px; left: 50%; top: 120px; }
+  .line-bottom { width: 2px; height: 200px; left: 50%; top: 420px; }
 
-  .line-bottom {
-    width: 2px;
-    height: 150px;
-    left: 50%;
-    top: 350px;
-  }
+  /* Horizontal lines */
+  .line-left { height: 2px; width: 300px; left: 20%; top: 300px; }
+  .line-right { height: 2px; width: 300px; right: 20%; top: 300px; }
 
   /* Diagonal lines */
-  .line-top-left {
-    width: 2px;
-    height: 180px;
-    left: 32%;
-    top: 150px;
-    transform: rotate(-35deg);
-  }
-
-  .line-top-right {
-    width: 2px;
-    height: 180px;
-    right: 32%;
-    top: 150px;
-    transform: rotate(35deg);
-  }
-
-  .line-bottom-left {
-    width: 2px;
-    height: 180px;
-    left: 32%;
-    top: 350px;
-    transform: rotate(35deg);
-  }
-
-  .line-bottom-right {
-    width: 2px;
-    height: 180px;
-    right: 32%;
-    top: 350px;
-    transform: rotate(-35deg);
-  }
+  .line-top-left { width: 2px; height: 240px; left: 28%; top: 120px; transform: rotate(-35deg); }
+  .line-top-right { width: 2px; height: 240px; right: 28%; top: 120px; transform: rotate(35deg); }
+  .line-bottom-left { width: 2px; height: 240px; left: 28%; top: 420px; transform: rotate(35deg); }
+  .line-bottom-right { width: 2px; height: 240px; right: 28%; top: 420px; transform: rotate(-35deg); }
 
 </style>
 </head>
@@ -197,20 +163,11 @@
 
 <div class="map">
 
-  <!-- GOOGLE -->
-  <div class="lord">
-    <h2>Alphabet (Lord)</h2>
-    <div><span class="label">Fiefs:</span> Search, Gmail, YouTube, Maps, Photos</div>
-
-    <button class="info-btn" onclick="toggleInfo('google-info')">More Info</button>
-
-    <div id="google-info" class="more-info">
-      <div><span class="label">Rent:</span>
-        search queries, location data, photos, watch history, ad attention
-      </div>
-      <div><span class="label">Flows:</span> Consumer → data & attention; Alphabet → search, maps, cloud storage</div>
-    </div>
-  </div>
+  <!-- TOP LORDS -->
+  <div class="lord"><h2>Alphabet</h2></div>
+  <div class="lord"><h2>Apple</h2></div>
+  <div class="lord"><h2>Amazon</h2></div>
+  <div class="lord"><h2>Meta</h2></div>
 
   <!-- CONSUMER -->
   <div class="consumer" onclick="toggleWeb()">
@@ -218,54 +175,20 @@
     <small>(click to reveal web)</small>
   </div>
 
-  <!-- APPLE -->
-  <div class="lord">
-    <h2>Apple (Lord)</h2>
-    <div><span class="label">Fiefs:</span> iPhone, iCloud, App Store, Apple Music</div>
+  <!-- BOTTOM LORDS -->
+  <div class="lord"><h2>TikTok</h2></div>
+  <div class="lord"><h2>Spotify</h2></div>
+  <div class="lord"><h2>Discord</h2></div>
+  <div class="lord"><h2>Netflix</h2></div>
 
-    <button class="info-btn" onclick="toggleInfo('apple-info')">More Info</button>
-
-    <div id="apple-info" class="more-info">
-      <div><span class="label">Rent:</span>
-        hardware fees, subscriptions, device analytics
-      </div>
-      <div><span class="label">Flows:</span> Consumer → money & usage data; Apple → hardware ecosystem & cloud sync</div>
-    </div>
-  </div>
-
-  <!-- AMAZON -->
-  <div class="lord">
-    <h2>Amazon (Lord)</h2>
-    <div><span class="label">Fiefs:</span> Marketplace, Prime Video, Kindle, Alexa</div>
-
-    <button class="info-btn" onclick="toggleInfo('amazon-info')">More Info</button>
-
-    <div id="amazon-info" class="more-info">
-      <div><span class="label">Rent:</span>
-        Prime fees, purchases, shopping data, voice data
-      </div>
-      <div><span class="label">Flows:</span> Consumer → money & behavioral data; Amazon → shipping & entertainment</div>
-    </div>
-  </div>
-
-  <!-- META -->
-  <div class="lord">
-    <h2>Meta (Lord)</h2>
-    <div><span class="label">Fiefs:</span> Instagram, Facebook, WhatsApp, Messenger</div>
-
-    <button class="info-btn" onclick="toggleInfo('meta-info')">More Info</button>
-
-    <div id="meta-info" class="more-info">
-      <div><span class="label">Rent:</span>
-        photos, social graph, metadata, attention
-      </div>
-      <div><span class="label">Flows:</span> Consumer → content & attention; Meta → algorithmic feeds & social connection</div>
-    </div>
-  </div>
+  <!-- EXTRA LORD -->
+  <div class="lord"><h2>Canvas</h2></div>
 
   <!-- SPIDER WEB LINES -->
   <div class="line line-top"></div>
   <div class="line line-bottom"></div>
+  <div class="line line-left"></div>
+  <div class="line line-right"></div>
   <div class="line line-top-left"></div>
   <div class="line line-top-right"></div>
   <div class="line line-bottom-left"></div>
@@ -274,11 +197,6 @@
 </div>
 
 <script>
-  function toggleInfo(id) {
-    const box = document.getElementById(id);
-    box.style.display = box.style.display === "block" ? "none" : "block";
-  }
-
   function toggleWeb() {
     document.querySelectorAll('.line').forEach(line => {
       line.classList.toggle('show');
