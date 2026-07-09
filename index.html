@@ -57,14 +57,14 @@
     color: #333;
   }
 
-  .you {
+  .consumer {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     background: #222;
     color: #fff;
     border-radius: 50%;
-    width: 160px;
-    height: 160px;
+    width: 180px;
+    height: 180px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -72,11 +72,13 @@
     align-items: center;
     box-shadow: 0 6px 16px rgba(0,0,0,0.25);
     text-align: center;
+    padding: 10px;
   }
 
-  .you span {
+  .consumer span {
     font-size: 20px;
     font-weight: bold;
+    letter-spacing: 0.5px;
   }
 
   /* Rent colors */
@@ -90,16 +92,16 @@
     position: absolute;
     font-size: 12px;
     color: #444;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.85);
     padding: 6px 10px;
     border-radius: 6px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   }
 
-  .arrow-google { top: 180px; left: 240px; }
-  .arrow-apple { top: 180px; right: 240px; text-align: right; }
-  .arrow-amazon { top: 360px; left: 240px; }
-  .arrow-meta { top: 360px; right: 240px; text-align: right; }
+  .arrow-google { top: 190px; left: 240px; }
+  .arrow-apple { top: 190px; right: 240px; text-align: right; }
+  .arrow-amazon { top: 370px; left: 240px; }
+  .arrow-meta { top: 370px; right: 240px; text-align: right; }
 
 </style>
 </head>
@@ -107,7 +109,7 @@
 <body>
 
 <h1>Personal Cloud Feudal Map</h1>
-<div class="subtitle">Your digital lords, their fiefs, and the rent you pay.</div>
+<div class="subtitle">Digital lords, their fiefs, and the rent extracted from the consumer.</div>
 
 <div class="map">
 
@@ -119,13 +121,13 @@
       <span class="rent-data">search queries, location data, photos, watch history</span>,
       <span class="rent-attention">ad attention</span>
     </div>
-    <div><span class="label">Flows:</span> You → data & attention; Alphabet → search, maps, cloud storage</div>
+    <div><span class="label">Flows:</span> Consumer → data & attention; Alphabet → search, maps, cloud storage</div>
   </div>
 
-  <!-- YOU -->
-  <div class="you">
-    <span>YOU</span>
-    <small>(center of the estate)</small>
+  <!-- CONSUMER -->
+  <div class="consumer">
+    <span>THE CONSUMER</span>
+    <small>(center of the digital estate)</small>
   </div>
 
   <!-- APPLE -->
@@ -136,7 +138,7 @@
       <span class="rent-money">hardware & subscription fees</span>,
       <span class="rent-data">device analytics</span>
     </div>
-    <div><span class="label">Flows:</span> You → money & usage data; Apple → hardware ecosystem & cloud sync</div>
+    <div><span class="label">Flows:</span> Consumer → money & usage data; Apple → hardware ecosystem & cloud sync</div>
   </div>
 
   <!-- AMAZON -->
@@ -147,7 +149,7 @@
       <span class="rent-money">Prime & purchases</span>,
       <span class="rent-data">purchase history, voice data</span>
     </div>
-    <div><span class="label">Flows:</span> You → money & behavioral data; Amazon → shipping & entertainment</div>
+    <div><span class="label">Flows:</span> Consumer → money & behavioral data; Amazon → shipping & entertainment</div>
   </div>
 
   <!-- META -->
@@ -158,28 +160,28 @@
       <span class="rent-data">photos, social graph, metadata</span>,
       <span class="rent-attention">ad attention</span>
     </div>
-    <div><span class="label">Flows:</span> You → content & attention; Meta → algorithmic feeds & social connection</div>
+    <div><span class="label">Flows:</span> Consumer → content & attention; Meta → algorithmic feeds & social connection</div>
   </div>
 
   <!-- ARROWS -->
   <div class="arrow arrow-google">
     Alphabet ← <span class="rent-data">data</span>, <span class="rent-attention">attention</span><br>
-    Services → YOU
+    Services → Consumer
   </div>
 
   <div class="arrow arrow-apple">
     Apple ← <span class="rent-money">money</span>, <span class="rent-data">device data</span><br>
-    Ecosystem → YOU
+    Ecosystem → Consumer
   </div>
 
   <div class="arrow arrow-amazon">
     Amazon ← <span class="rent-money">payments</span>, <span class="rent-data">shopping data</span><br>
-    Prime → YOU
+    Prime → Consumer
   </div>
 
   <div class="arrow arrow-meta">
     Meta ← <span class="rent-data">photos & graph</span>, <span class="rent-attention">attention</span><br>
-    Feeds → YOU
+    Feeds → Consumer
   </div>
 
 </div>
