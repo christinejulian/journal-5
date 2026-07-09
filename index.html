@@ -24,8 +24,8 @@
     text-align: center;
     font-size: 17px;
     color: #666;
-    margin: 0 auto 60px auto;   /* Increased bottom margin */
-    max-width: 700px;           /* Keeps it neat and centered */
+    margin: 0 auto 60px auto;
+    max-width: 700px;
     line-height: 1.4;
   }
 
@@ -65,6 +65,7 @@
     color: #444;
   }
 
+  /* Consumer node */
   .consumer {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
@@ -101,6 +102,37 @@
   .rent-attention { color: #f39c12; }
   .rent-labor { color: #27ae60; }
 
+  /* Expandable info box */
+  .more-info {
+    margin-top: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 12px;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .info-btn {
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s ease;
+  }
+
+  .info-btn:hover {
+    background: #1f6a96;
+  }
+
   /* Arrow text boxes */
   .arrow {
     position: absolute;
@@ -135,11 +167,16 @@
   <div class="lord">
     <h2>Alphabet (Lord)</h2>
     <div><span class="label">Fiefs:</span> Search, Gmail, YouTube, Maps, Photos</div>
-    <div><span class="label">Rent:</span>
-      <span class="rent-data">search queries, location data, photos, watch history</span>,
-      <span class="rent-attention">ad attention</span>
+
+    <button class="info-btn" onclick="toggleInfo('google-info')">More Info</button>
+
+    <div id="google-info" class="more-info">
+      <div><span class="label">Rent:</span>
+        <span class="rent-data">search queries, location data, photos, watch history</span>,
+        <span class="rent-attention">ad attention</span>
+      </div>
+      <div><span class="label">Flows:</span> Consumer → data & attention; Alphabet → search, maps, cloud storage</div>
     </div>
-    <div><span class="label">Flows:</span> Consumer → data & attention; Alphabet → search, maps, cloud storage</div>
   </div>
 
   <!-- CONSUMER -->
@@ -152,57 +189,79 @@
   <div class="lord">
     <h2>Apple (Lord)</h2>
     <div><span class="label">Fiefs:</span> iPhone, iCloud, App Store, Apple Music</div>
-    <div><span class="label">Rent:</span>
-      <span class="rent-money">hardware & subscription fees</span>,
-      <span class="rent-data">device analytics</span>
+
+    <button class="info-btn" onclick="toggleInfo('apple-info')">More Info</button>
+
+    <div id="apple-info" class="more-info">
+      <div><span class="label">Rent:</span>
+        <span class="rent-money">hardware & subscription fees</span>,
+        <span class="rent-data">device analytics</span>
+      </div>
+      <div><span class="label">Flows:</span> Consumer → money & usage data; Apple → hardware ecosystem & cloud sync</div>
     </div>
-    <div><span class="label">Flows:</span> Consumer → money & usage data; Apple → hardware ecosystem & cloud sync</div>
   </div>
 
   <!-- AMAZON -->
   <div class="lord">
     <h2>Amazon (Lord)</h2>
     <div><span class="label">Fiefs:</span> Marketplace, Prime Video, Kindle, Alexa</div>
-    <div><span class="label">Rent:</span>
-      <span class="rent-money">Prime & purchases</span>,
-      <span class="rent-data">purchase history, voice data</span>
+
+    <button class="info-btn" onclick="toggleInfo('amazon-info')">More Info</button>
+
+    <div id="amazon-info" class="more-info">
+      <div><span class="label">Rent:</span>
+        <span class="rent-money">Prime & purchases</span>,
+        <span class="rent-data">purchase history, voice data</span>
+      </div>
+      <div><span class="label">Flows:</span> Consumer → money & behavioral data; Amazon → shipping & entertainment</div>
     </div>
-    <div><span class="label">Flows:</span> Consumer → money & behavioral data; Amazon → shipping & entertainment</div>
   </div>
 
   <!-- META -->
   <div class="lord">
     <h2>Meta (Lord)</h2>
     <div><span class="label">Fiefs:</span> Instagram, Facebook, WhatsApp, Messenger</div>
-    <div><span class="label">Rent:</span>
-      <span class="rent-data">photos, social graph, metadata</span>,
-      <span class="rent-attention">ad attention</span>
+
+    <button class="info-btn" onclick="toggleInfo('meta-info')">More Info</button>
+
+    <div id="meta-info" class="more-info">
+      <div><span class="label">Rent:</span>
+        <span class="rent-data">photos, social graph, metadata</span>,
+        <span class="rent-attention">ad attention</span>
+      </div>
+      <div><span class="label">Flows:</span> Consumer → content & attention; Meta → algorithmic feeds & social connection</div>
     </div>
-    <div><span class="label">Flows:</span> Consumer → content & attention; Meta → algorithmic feeds & social connection</div>
   </div>
 
   <!-- ARROWS -->
   <div class="arrow arrow-google">
-    Alphabet ← <span class="rent-data">data</span>, <span class="rent-attention">attention</span><br>
+    Alphabet ← data, attention<br>
     Services → Consumer
   </div>
 
   <div class="arrow arrow-apple">
-    Apple ← <span class="rent-money">money</span>, <span class="rent-data">device data</span><br>
+    Apple ← money, device data<br>
     Ecosystem → Consumer
   </div>
 
   <div class="arrow arrow-amazon">
-    Amazon ← <span class="rent-money">payments</span>, <span class="rent-data">shopping data</span><br>
+    Amazon ← payments, shopping data<br>
     Prime → Consumer
   </div>
 
   <div class="arrow arrow-meta">
-    Meta ← <span class="rent-data">photos & graph</span>, <span class="rent-attention">attention</span><br>
+    Meta ← photos, graph, attention<br>
     Feeds → Consumer
   </div>
 
 </div>
+
+<script>
+  function toggleInfo(id) {
+    const box = document.getElementById(id);
+    box.style.display = box.style.display === "block" ? "none" : "block";
+  }
+</script>
 
 </body>
 </html>
