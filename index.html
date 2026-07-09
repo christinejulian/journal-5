@@ -39,6 +39,7 @@
     font-size: 15px;
     line-height: 1.55;
     transition: transform 0.2s ease;
+    cursor: pointer;
   }
 
   .lord:hover {
@@ -63,7 +64,7 @@
     grid-row: 2 / 4;
     background: linear-gradient(135deg, #222, #444);
     color: #fff;
-    border-radius: 20px;
+    border-radius: 50%;
     width: 260px;
     height: 260px;
     margin: 0 auto;
@@ -96,7 +97,7 @@
     opacity: 0.85;
   }
 
-  /* Expandable info box */
+  /* Info box */
   .more-info {
     margin-top: 12px;
     background: #f9f9f9;
@@ -111,26 +112,10 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .info-btn {
-    margin-top: 10px;
-    padding: 8px 14px;
-    background: #2980b9;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.2s ease;
-  }
-
-  .info-btn:hover {
-    background: #1f6a96;
-  }
-
   /* Spider web lines */
   .line {
     position: absolute;
-    background: #999;
+    background: #bbb;
     opacity: 0;
     transition: opacity 0.6s ease;
     z-index: 1;
@@ -140,19 +125,17 @@
     opacity: 1;
   }
 
-  /* Vertical lines */
-  .line-top { width: 2px; height: 200px; left: 50%; top: 120px; }
-  .line-bottom { width: 2px; height: 200px; left: 50%; top: 420px; }
+  /* Smooth symmetrical web */
+  .line-vertical-top { width: 2px; height: 180px; left: 50%; top: 140px; }
+  .line-vertical-bottom { width: 2px; height: 180px; left: 50%; top: 420px; }
 
-  /* Horizontal lines */
-  .line-left { height: 2px; width: 300px; left: 20%; top: 300px; }
-  .line-right { height: 2px; width: 300px; right: 20%; top: 300px; }
+  .line-horizontal-left { height: 2px; width: 300px; left: 20%; top: 300px; }
+  .line-horizontal-right { height: 2px; width: 300px; right: 20%; top: 300px; }
 
-  /* Diagonal lines */
-  .line-top-left { width: 2px; height: 240px; left: 28%; top: 120px; transform: rotate(-35deg); }
-  .line-top-right { width: 2px; height: 240px; right: 28%; top: 120px; transform: rotate(35deg); }
-  .line-bottom-left { width: 2px; height: 240px; left: 28%; top: 420px; transform: rotate(35deg); }
-  .line-bottom-right { width: 2px; height: 240px; right: 28%; top: 420px; transform: rotate(-35deg); }
+  .line-diag-tl { width: 2px; height: 220px; left: 30%; top: 140px; transform: rotate(-35deg); }
+  .line-diag-tr { width: 2px; height: 220px; right: 30%; top: 140px; transform: rotate(35deg); }
+  .line-diag-bl { width: 2px; height: 220px; left: 30%; top: 420px; transform: rotate(35deg); }
+  .line-diag-br { width: 2px; height: 220px; right: 30%; top: 420px; transform: rotate(-35deg); }
 
 </style>
 </head>
@@ -164,10 +147,33 @@
 <div class="map">
 
   <!-- TOP LORDS -->
-  <div class="lord"><h2>Alphabet</h2></div>
-  <div class="lord"><h2>Apple</h2></div>
-  <div class="lord"><h2>Amazon</h2></div>
-  <div class="lord"><h2>Meta</h2></div>
+  <div class="lord" onclick="toggleInfo('google-info')">
+    <h2>Alphabet</h2>
+    <div id="google-info" class="more-info">
+      <span class="label">Rent:</span> data, search history, attention  
+    </div>
+  </div>
+
+  <div class="lord" onclick="toggleInfo('apple-info')">
+    <h2>Apple</h2>
+    <div id="apple-info" class="more-info">
+      <span class="label">Rent:</span> money, device analytics  
+    </div>
+  </div>
+
+  <div class="lord" onclick="toggleInfo('amazon-info')">
+    <h2>Amazon</h2>
+    <div id="amazon-info" class="more-info">
+      <span class="label">Rent:</span> purchases, Prime fees, shopping data  
+    </div>
+  </div>
+
+  <div class="lord" onclick="toggleInfo('meta-info')">
+    <h2>Meta</h2>
+    <div id="meta-info" class="more-info">
+      <span class="label">Rent:</span> photos, social graph, attention  
+    </div>
+  </div>
 
   <!-- CONSUMER -->
   <div class="consumer" onclick="toggleWeb()">
@@ -176,23 +182,51 @@
   </div>
 
   <!-- BOTTOM LORDS -->
-  <div class="lord"><h2>TikTok</h2></div>
-  <div class="lord"><h2>Spotify</h2></div>
-  <div class="lord"><h2>Discord</h2></div>
-  <div class="lord"><h2>Netflix</h2></div>
+  <div class="lord" onclick="toggleInfo('tiktok-info')">
+    <h2>TikTok</h2>
+    <div id="tiktok-info" class="more-info">
+      <span class="label">Rent:</span> attention, behavior patterns  
+    </div>
+  </div>
+
+  <div class="lord" onclick="toggleInfo('spotify-info')">
+    <h2>Spotify</h2>
+    <div id="spotify-info" class="more-info">
+      <span class="label">Rent:</span> listening data, subscription fees  
+    </div>
+  </div>
+
+  <div class="lord" onclick="toggleInfo('discord-info')">
+    <h2>Discord</h2>
+    <div id="discord-info" class="more-info">
+      <span class="label">Rent:</span> messages, community activity  
+    </div>
+  </div>
+
+  <div class="lord" onclick="toggleInfo('netflix-info')">
+    <h2>Netflix</h2>
+    <div id="netflix-info" class="more-info">
+      <span class="label">Rent:</span> subscription fees, viewing habits  
+    </div>
+  </div>
 
   <!-- EXTRA LORD -->
-  <div class="lord"><h2>Canvas</h2></div>
+  <div class="lord" onclick="toggleInfo('canvas-info')">
+    <h2>Canvas</h2>
+    <div id="canvas-info" class="more-info">
+      <span class="label">Rent:</span> academic data, engagement metrics  
+    </div>
+  </div>
 
   <!-- SPIDER WEB LINES -->
-  <div class="line line-top"></div>
-  <div class="line line-bottom"></div>
-  <div class="line line-left"></div>
-  <div class="line line-right"></div>
-  <div class="line line-top-left"></div>
-  <div class="line line-top-right"></div>
-  <div class="line line-bottom-left"></div>
-  <div class="line line-bottom-right"></div>
+  <div class="line line-vertical-top"></div>
+  <div class="line line-vertical-bottom"></div>
+  <div class="line line-horizontal-left"></div>
+  <div class="line line-horizontal-right"></div>
+  <div class="line line-diag-tl"></div>
+  <div class="line line-diag-tr"></div>
+  <div class="line line-diag-bl"></div>
+  <div class="line line-diag-br"></div>
 
 </div>
 
@@ -201,6 +235,11 @@
     document.querySelectorAll('.line').forEach(line => {
       line.classList.toggle('show');
     });
+  }
+
+  function toggleInfo(id) {
+    const box = document.getElementById(id);
+    box.style.display = box.style.display === "block" ? "none" : "block";
   }
 </script>
 
