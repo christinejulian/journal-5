@@ -74,6 +74,14 @@
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     text-align: center;
     padding: 20px;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.2s ease;
+  }
+
+  .consumer:hover {
+    transform: scale(1.03);
   }
 
   .consumer span {
@@ -87,12 +95,6 @@
     font-size: 13px;
     opacity: 0.85;
   }
-
-  /* Rent colors */
-  .rent-money { color: #c0392b; }
-  .rent-data { color: #2980b9; }
-  .rent-attention { color: #f39c12; }
-  .rent-labor { color: #27ae60; }
 
   /* Expandable info box */
   .more-info {
@@ -125,6 +127,26 @@
     background: #1f6a96;
   }
 
+  /* Connecting lines (hidden by default) */
+  .line {
+    position: absolute;
+    background: #888;
+    width: 2px;
+    height: 120px;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 1;
+  }
+
+  .line.show {
+    opacity: 1;
+  }
+
+  .line-google { left: 25%; top: 180px; }
+  .line-apple { right: 25%; top: 180px; }
+  .line-amazon { left: 25%; top: 340px; }
+  .line-meta { right: 25%; top: 340px; }
+
 </style>
 </head>
 
@@ -151,9 +173,9 @@
   </div>
 
   <!-- CONSUMER -->
-  <div class="consumer">
+  <div class="consumer" onclick="toggleLines()">
     <span>THE CONSUMER</span>
-    <small>(center of the digital estate)</small>
+    <small>(click to reveal connections)</small>
   </div>
 
   <!-- APPLE -->
@@ -204,12 +226,24 @@
     </div>
   </div>
 
+  <!-- CONNECTING LINES -->
+  <div class="line line-google"></div>
+  <div class="line line-apple"></div>
+  <div class="line line-amazon"></div>
+  <div class="line line-meta"></div>
+
 </div>
 
 <script>
   function toggleInfo(id) {
     const box = document.getElementById(id);
     box.style.display = box.style.display === "block" ? "none" : "block";
+  }
+
+  function toggleLines() {
+    document.querySelectorAll('.line').forEach(line => {
+      line.classList.toggle('show');
+    });
   }
 </script>
 
