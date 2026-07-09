@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Cloud Feudal Map</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #555;
+    }
+    .map-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto auto;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .lord {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      font-size: 14px;
+    }
+    .lord h2 {
+      margin: 0 0 6px 0;
+      font-size: 16px;
+      color: #222;
+    }
+    .label {
+      font-weight: bold;
+      color: #333;
+    }
+    .you {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      background: #222;
+      color: #fff;
+      border-radius: 50%;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+    .you span {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .arrow {
+      position: absolute;
+      font-size: 11px;
+      color: #444;
+    }
+    /* Example arrow positions (you can tweak these) */
+    .arrow-google {
+      top: 155px;
+      left: 210px;
+    }
+    .arrow-apple {
+      top: 155px;
+      right: 210px;
+      text-align: right;
+    }
+    .arrow-meta {
+      top: 320px;
+      right: 210px;
+      text-align: right;
+    }
+    .arrow-amazon {
+      top: 320px;
+      left: 210px;
+    }
+    .rent-money { color: #c0392b; }    /* red */
+    .rent-data { color: #2980b9; }     /* blue */
+    .rent-attention { color: #f39c12; }/* yellow */
+    .rent-labor { color: #27ae60; }    /* green */
+  </style>
+</head>
+<body>
+
+  <h1>Personal Cloud Feudal Map</h1>
+  <div class="subtitle">
+    Lords, platforms (fiefs), and the rent and flows between you and each.
+  </div>
+
+  <div class="map-container">
+
+    <!-- Top row: Google, Apple -->
+    <div class="lord">
+      <h2>Alphabet (Lord)</h2>
+      <div><span class="label">Fiefs:</span> Google Search, Gmail, YouTube, Maps, Photos</div>
+      <div><span class="label">Rent you pay:</span>
+        <span class="rent-data">search queries, location data, photos, watch history</span>,
+        <span class="rent-attention">ad attention</span>
+      </div>
+      <div><span class="label">Flows:</span> You → data & attention; Alphabet → free services, navigation, cloud storage</div>
+    </div>
+
+    <div class="you">
+      <span>YOU</span>
+      <small>(center of the feudal estate)</small>
+    </div>
+
+    <div class="lord">
+      <h2>Apple (Lord)</h2>
+      <div><span class="label">Fiefs:</span> iPhone, iCloud, App Store, Apple Music</div>
+      <div><span class="label">Rent you pay:</span>
+        <span class="rent-money">hardware & subscription fees</span>,
+        <span class="rent-data">device analytics</span>
+      </div>
+      <div><span class="label">Flows:</span> You → money & usage data; Apple → hardware ecosystem, cloud sync, curated apps</div>
+    </div>
+
+    <!-- Bottom row: Amazon, Meta -->
+    <div class="lord">
+      <h2>Amazon (Lord)</h2>
+      <div><span class="label">Fiefs:</span> Marketplace, Prime Video, Kindle, Alexa</div>
+      <div><span class="label">Rent you pay:</span>
+        <span class="rent-money">Prime & purchases</span>,
+        <span class="rent-data">purchase history, voice data</span>
+      </div>
+      <div><span class="label">Flows:</span> You → money & behavioral data; Amazon → fast shipping, entertainment</div>
+    </div>
+
+    <div class="lord">
+      <h2>Meta (Lord)</h2>
+      <div><span class="label">Fiefs:</span> Instagram, Facebook, WhatsApp, Messenger</div>
+      <div><span class="label">Rent you pay:</span>
+        <span class="rent-data">photos, social graph, messages metadata</span>,
+        <span class="rent-attention">scrolling & ad attention</span>
+      </div>
+      <div><span class="label">Flows:</span> You → content & attention; Meta → algorithmic feeds, social connection</div>
+    </div>
+
+    <!-- Optional extra lords (TikTok, Spotify, Discord, Canvas) -->
+    <!-- You can duplicate .lord blocks below and customize them for your own platforms -->
+
+    <!-- Textual arrows (you can replace with SVG or images later) -->
+    <div class="arrow arrow-google">
+      → Alphabet: <span class="rent-data">data</span>, <span class="rent-attention">attention</span><br>
+      ← Services: search, maps, video, email
+    </div>
+
+    <div class="arrow arrow-apple">
+      Apple ← <span class="rent-money">money</span>, <span class="rent-data">device data</span><br>
+      Hardware & cloud → YOU
+    </div>
+
+    <div class="arrow arrow-amazon">
+      → Amazon: <span class="rent-money">payments</span>, <span class="rent-data">shopping data</span><br>
+      ← Prime, marketplace, entertainment
+    </div>
+
+    <div class="arrow arrow-meta">
+      Meta ← <span class="rent-data">photos & social graph</span>, <span class="rent-attention">attention</span><br>
+      Feeds & connection → YOU
+    </div>
+
+  </div>
+
+</body>
+</html>
