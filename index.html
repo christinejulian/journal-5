@@ -53,9 +53,12 @@
     color: #222;
   }
 
-  .label {
-    font-weight: 600;
-    color: #444;
+  .more-info {
+    margin-top: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 12px;
+    display: none;
   }
 
   /* Consumer node */
@@ -78,41 +81,13 @@
     cursor: pointer;
     position: relative;
     z-index: 2;
-    transition: transform 0.2s ease;
   }
 
   .consumer:hover {
     transform: scale(1.03);
   }
 
-  .consumer span {
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 0.6px;
-  }
-
-  .consumer small {
-    margin-top: 6px;
-    font-size: 13px;
-    opacity: 0.85;
-  }
-
-  /* Info box */
-  .more-info {
-    margin-top: 12px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    padding: 12px;
-    display: none;
-    animation: fadeIn 0.3s ease;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Spider web lines */
+  /* Smooth spider web lines */
   .line {
     position: absolute;
     background: #bbb;
@@ -125,17 +100,23 @@
     opacity: 1;
   }
 
-  /* Smooth symmetrical web */
-  .line-vertical-top { width: 2px; height: 180px; left: 50%; top: 140px; }
-  .line-vertical-bottom { width: 2px; height: 180px; left: 50%; top: 420px; }
+  /* 9 smooth lines */
+  /* Vertical */
+  .line-vertical { width: 2px; height: 260px; left: 50%; top: 180px; }
 
-  .line-horizontal-left { height: 2px; width: 300px; left: 20%; top: 300px; }
-  .line-horizontal-right { height: 2px; width: 300px; right: 20%; top: 300px; }
+  /* Horizontal */
+  .line-horizontal { height: 2px; width: 400px; left: calc(50% - 200px); top: 310px; }
 
-  .line-diag-tl { width: 2px; height: 220px; left: 30%; top: 140px; transform: rotate(-35deg); }
-  .line-diag-tr { width: 2px; height: 220px; right: 30%; top: 140px; transform: rotate(35deg); }
-  .line-diag-bl { width: 2px; height: 220px; left: 30%; top: 420px; transform: rotate(35deg); }
-  .line-diag-br { width: 2px; height: 220px; right: 30%; top: 420px; transform: rotate(-35deg); }
+  /* Diagonals */
+  .line-diag-tl { width: 2px; height: 260px; left: 35%; top: 180px; transform: rotate(-35deg); }
+  .line-diag-tr { width: 2px; height: 260px; right: 35%; top: 180px; transform: rotate(35deg); }
+  .line-diag-bl { width: 2px; height: 260px; left: 35%; top: 310px; transform: rotate(35deg); }
+  .line-diag-br { width: 2px; height: 260px; right: 35%; top: 310px; transform: rotate(-35deg); }
+
+  /* Inner ring lines */
+  .line-ring-top { height: 2px; width: 200px; left: calc(50% - 100px); top: 240px; }
+  .line-ring-bottom { height: 2px; width: 200px; left: calc(50% - 100px); top: 380px; }
+  .line-ring-middle { width: 2px; height: 140px; left: 50%; top: 240px; }
 
 </style>
 </head>
@@ -150,28 +131,28 @@
   <div class="lord" onclick="toggleInfo('google-info')">
     <h2>Alphabet</h2>
     <div id="google-info" class="more-info">
-      <span class="label">Rent:</span> data, search history, attention  
+      Rent: data, search history, attention
     </div>
   </div>
 
   <div class="lord" onclick="toggleInfo('apple-info')">
     <h2>Apple</h2>
     <div id="apple-info" class="more-info">
-      <span class="label">Rent:</span> money, device analytics  
+      Rent: money, device analytics
     </div>
   </div>
 
   <div class="lord" onclick="toggleInfo('amazon-info')">
     <h2>Amazon</h2>
     <div id="amazon-info" class="more-info">
-      <span class="label">Rent:</span> purchases, Prime fees, shopping data  
+      Rent: purchases, Prime fees, shopping data
     </div>
   </div>
 
   <div class="lord" onclick="toggleInfo('meta-info')">
     <h2>Meta</h2>
     <div id="meta-info" class="more-info">
-      <span class="label">Rent:</span> photos, social graph, attention  
+      Rent: photos, social graph, attention
     </div>
   </div>
 
@@ -185,28 +166,28 @@
   <div class="lord" onclick="toggleInfo('tiktok-info')">
     <h2>TikTok</h2>
     <div id="tiktok-info" class="more-info">
-      <span class="label">Rent:</span> attention, behavior patterns  
+      Rent: attention, behavior patterns
     </div>
   </div>
 
   <div class="lord" onclick="toggleInfo('spotify-info')">
     <h2>Spotify</h2>
     <div id="spotify-info" class="more-info">
-      <span class="label">Rent:</span> listening data, subscription fees  
+      Rent: listening data, subscription fees
     </div>
   </div>
 
   <div class="lord" onclick="toggleInfo('discord-info')">
     <h2>Discord</h2>
     <div id="discord-info" class="more-info">
-      <span class="label">Rent:</span> messages, community activity  
+      Rent: messages, community activity
     </div>
   </div>
 
   <div class="lord" onclick="toggleInfo('netflix-info')">
     <h2>Netflix</h2>
     <div id="netflix-info" class="more-info">
-      <span class="label">Rent:</span> subscription fees, viewing habits  
+      Rent: subscription fees, viewing habits
     </div>
   </div>
 
@@ -214,19 +195,20 @@
   <div class="lord" onclick="toggleInfo('canvas-info')">
     <h2>Canvas</h2>
     <div id="canvas-info" class="more-info">
-      <span class="label">Rent:</span> academic data, engagement metrics  
+      Rent: academic data, engagement metrics
     </div>
   </div>
 
-  <!-- SPIDER WEB LINES -->
-  <div class="line line-vertical-top"></div>
-  <div class="line line-vertical-bottom"></div>
-  <div class="line line-horizontal-left"></div>
-  <div class="line line-horizontal-right"></div>
+  <!-- 9 SMOOTH WEB LINES -->
+  <div class="line line-vertical"></div>
+  <div class="line line-horizontal"></div>
   <div class="line line-diag-tl"></div>
   <div class="line line-diag-tr"></div>
   <div class="line line-diag-bl"></div>
   <div class="line line-diag-br"></div>
+  <div class="line line-ring-top"></div>
+  <div class="line line-ring-bottom"></div>
+  <div class="line line-ring-middle"></div>
 
 </div>
 
