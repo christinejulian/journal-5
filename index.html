@@ -20,104 +20,77 @@
     font-weight: 600;
   }
 
-  .map {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding-top: 10px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto auto auto auto;
-    gap: 35px;
+  .map-container {
     position: relative;
-  }
-
-  .lord {
-    background: #ffffff;
-    border-radius: 14px;
-    padding: 22px 24px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-    font-size: 15px;
-    line-height: 1.55;
-    transition: transform 0.2s ease;
-    cursor: pointer;
-  }
-
-  .lord:hover {
-    transform: translateY(-3px);
-  }
-
-  .lord h2 {
-    margin: 0 0 12px 0;
-    font-size: 20px;
-    font-weight: 600;
-    color: #222;
-  }
-
-  .more-info {
-    margin-top: 12px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    padding: 12px;
-    display: none;
-  }
-
-  /* Consumer node */
-  .consumer {
-    grid-column: 2 / 4;
-    grid-row: 2 / 4;
-    background: linear-gradient(135deg, #222, #444);
-    color: #fff;
-    border-radius: 50%;
-    width: 260px;
-    height: 260px;
+    width: 900px;
+    height: 900px;
     margin: 0 auto;
+  }
+
+  /* Consumer in center */
+  .consumer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180px;
+    height: 180px;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #222, #444);
+    border-radius: 50%;
+    color: #fff;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    text-align: center;
-    padding: 20px;
+    flex-direction: column;
     cursor: pointer;
-    position: relative;
-    z-index: 2;
+    box-shadow: 0 0 25px rgba(0,0,0,0.25);
+    z-index: 10;
   }
 
   .consumer:hover {
-    transform: scale(1.03);
+    transform: translate(-50%, -50%) scale(1.05);
   }
 
-  /* Smooth spider web lines */
-  .line {
+  /* Lords arranged in a perfect circle */
+  .lord {
     position: absolute;
-    background: #bbb;
+    width: 160px;
+    height: 160px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .lord:hover {
+    transform: scale(1.05);
+  }
+
+  .more-info {
+    display: none;
+    margin-top: 10px;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  /* Curved glowing spider silk lines */
+  svg path {
+    stroke: #bbb;
+    stroke-width: 3;
+    fill: none;
     opacity: 0;
-    transition: opacity 0.6s ease;
-    z-index: 1;
+    transition: opacity 1s ease, stroke 0.5s ease;
   }
 
-  .line.show {
+  svg path.show {
     opacity: 1;
+    stroke: #7fc8ff;
+    filter: drop-shadow(0 0 6px #7fc8ff);
   }
-
-  /* 9 smooth lines */
-  /* Vertical */
-  .line-vertical { width: 2px; height: 260px; left: 50%; top: 180px; }
-
-  /* Horizontal */
-  .line-horizontal { height: 2px; width: 400px; left: calc(50% - 200px); top: 310px; }
-
-  /* Diagonals */
-  .line-diag-tl { width: 2px; height: 260px; left: 35%; top: 180px; transform: rotate(-35deg); }
-  .line-diag-tr { width: 2px; height: 260px; right: 35%; top: 180px; transform: rotate(35deg); }
-  .line-diag-bl { width: 2px; height: 260px; left: 35%; top: 310px; transform: rotate(35deg); }
-  .line-diag-br { width: 2px; height: 260px; right: 35%; top: 310px; transform: rotate(-35deg); }
-
-  /* Inner ring lines */
-  .line-ring-top { height: 2px; width: 200px; left: calc(50% - 100px); top: 240px; }
-  .line-ring-bottom { height: 2px; width: 200px; left: calc(50% - 100px); top: 380px; }
-  .line-ring-middle { width: 2px; height: 140px; left: 50%; top: 240px; }
-
 </style>
 </head>
 
@@ -125,97 +98,64 @@
 
 <h1>Personal Cloud Feudal Map</h1>
 
-<div class="map">
+<div class="map-container">
 
-  <!-- TOP LORDS -->
-  <div class="lord" onclick="toggleInfo('google-info')">
-    <h2>Alphabet</h2>
-    <div id="google-info" class="more-info">
-      Rent: data, search history, attention
-    </div>
-  </div>
+  <!-- SVG curved lines -->
+  <svg width="900" height="900" style="position:absolute; top:0; left:0;">
+    <!-- 9 curved connections -->
+    <path id="line1" d="M450 450 Q450 150 650 200" />
+    <path id="line2" d="M450 450 Q600 200 750 350" />
+    <path id="line3" d="M450 450 Q700 450 750 550" />
+    <path id="line4" d="M450 450 Q600 700 650 750" />
+    <path id="line5" d="M450 450 Q450 750 450 800" />
+    <path id="line6" d="M450 450 Q300 700 250 750" />
+    <path id="line7" d="M450 450 Q200 450 150 550" />
+    <path id="line8" d="M450 450 Q300 200 250 150" />
+    <path id="line9" d="M450 450 Q450 150 450 100" />
+  </svg>
 
-  <div class="lord" onclick="toggleInfo('apple-info')">
-    <h2>Apple</h2>
-    <div id="apple-info" class="more-info">
-      Rent: money, device analytics
-    </div>
-  </div>
-
-  <div class="lord" onclick="toggleInfo('amazon-info')">
-    <h2>Amazon</h2>
-    <div id="amazon-info" class="more-info">
-      Rent: purchases, Prime fees, shopping data
-    </div>
-  </div>
-
-  <div class="lord" onclick="toggleInfo('meta-info')">
-    <h2>Meta</h2>
-    <div id="meta-info" class="more-info">
-      Rent: photos, social graph, attention
-    </div>
-  </div>
-
-  <!-- CONSUMER -->
+  <!-- Consumer -->
   <div class="consumer" onclick="toggleWeb()">
-    <span>THE CONSUMER</span>
+    <strong>THE CONSUMER</strong>
     <small>(click to reveal web)</small>
   </div>
 
-  <!-- BOTTOM LORDS -->
-  <div class="lord" onclick="toggleInfo('tiktok-info')">
-    <h2>TikTok</h2>
-    <div id="tiktok-info" class="more-info">
-      Rent: attention, behavior patterns
-    </div>
-  </div>
+  <!-- Lords in perfect circle -->
+  <script>
+    const lords = [
+      "Alphabet", "Apple", "Amazon", "Meta",
+      "TikTok", "Spotify", "Discord", "Netflix", "Canvas"
+    ];
+  </script>
 
-  <div class="lord" onclick="toggleInfo('spotify-info')">
-    <h2>Spotify</h2>
-    <div id="spotify-info" class="more-info">
-      Rent: listening data, subscription fees
-    </div>
-  </div>
+  <!-- Generate lord positions -->
+  <script>
+    const radius = 330;
+    const centerX = 450;
+    const centerY = 450;
 
-  <div class="lord" onclick="toggleInfo('discord-info')">
-    <h2>Discord</h2>
-    <div id="discord-info" class="more-info">
-      Rent: messages, community activity
-    </div>
-  </div>
+    lords.forEach((name, i) => {
+      const angle = (i / 9) * (2 * Math.PI);
+      const x = centerX + radius * Math.cos(angle) - 80;
+      const y = centerY + radius * Math.sin(angle) - 80;
 
-  <div class="lord" onclick="toggleInfo('netflix-info')">
-    <h2>Netflix</h2>
-    <div id="netflix-info" class="more-info">
-      Rent: subscription fees, viewing habits
-    </div>
-  </div>
-
-  <!-- EXTRA LORD -->
-  <div class="lord" onclick="toggleInfo('canvas-info')">
-    <h2>Canvas</h2>
-    <div id="canvas-info" class="more-info">
-      Rent: academic data, engagement metrics
-    </div>
-  </div>
-
-  <!-- 9 SMOOTH WEB LINES -->
-  <div class="line line-vertical"></div>
-  <div class="line line-horizontal"></div>
-  <div class="line line-diag-tl"></div>
-  <div class="line line-diag-tr"></div>
-  <div class="line line-diag-bl"></div>
-  <div class="line line-diag-br"></div>
-  <div class="line line-ring-top"></div>
-  <div class="line line-ring-bottom"></div>
-  <div class="line line-ring-middle"></div>
+      document.write(`
+        <div class="lord" style="left:${x}px; top:${y}px;" onclick="toggleInfo('${name}')">
+          <h3>${name}</h3>
+          <div id="${name}" class="more-info">
+            Rent: (your description here)
+          </div>
+        </div>
+      `);
+    });
+  </script>
 
 </div>
 
 <script>
   function toggleWeb() {
-    document.querySelectorAll('.line').forEach(line => {
-      line.classList.toggle('show');
+    document.querySelectorAll("svg path").forEach(p => {
+      p.classList.toggle("show");
     });
   }
 
